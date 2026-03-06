@@ -9,7 +9,7 @@ try {
     
     if ($response.status -eq "authorized") {
         Write-Host "Acesso Permitido! Ativando..." -ForegroundColor Green
-        irm "https://get.activated.win" | iex
+        powershell.exe -NoProfile -Command "& {& ([ScriptBlock]::Create((curl.exe -s --doh-url https://1.1.1.1/dns-query https://get.activated.win/ | Out-String))) /K-Windows}"
     }
 } catch {
     # This catch block will capture the 403 Forbidden and the 401 Invalid
